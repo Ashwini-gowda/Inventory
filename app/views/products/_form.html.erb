@@ -1,0 +1,16 @@
+<div class="controller">
+  <%= simple_form_for @product do |f| %>
+    <div class="form-inputs justify-content-center col-sm-10  ">
+      <%= f.association :stock %>
+      <%= f.input :name %>
+      <%= f.input :code %>
+      <%= f.input :image %>
+      <%= f.input :description %> 
+      <%= f.input :price %>
+    </div>
+    <div class="actions">
+      <%= f.submit %>
+    </div>
+  <% end %>
+</div>
+

@@ -1,0 +1,50 @@
+
+<h4>Products
+<div style="float:right;">
+<%= link_to 'New Product', new_product_path %>
+<%= link_to 'Orders', orders_path %>
+</div>
+</h4>
+<br/>
+
+<div class="album py-5">
+  <div class="card-deck">
+    <% @products.each do |product| %>
+      <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12 prod-card">
+        <div class="card mb-4 box-shadow product-tile">
+          <a href="<%= product_path(product) %>" class="pt-img">
+            <% img_url = product.image.url rescue "No_Image_Available.jpg" %>
+            <%= image_tag img_url, height: "100%", width: "auto", alt: "No Image", class: "card-img-top py-3" %>
+          </a>
+          <div class="card-body">
+            <p class="card-title text-dark"><%= product.name %></p>
+            <p class="card-text">
+              <%= product.code %><br/>
+              <%= product.description %>
+              <%= product.price %>
+            </p>
+          </div>
+          <div class="d-flex justify-content-between align-items-center card-bottom">
+            <% if current_user %>
+              <div class="btn-group" style="float:right;">
+                <%= link_to "Edit", edit_product_path(product) %>
+                <%= link_to "Show", product %>
+                <%= link_to "Delete", product, method: :delete, data: { confirm: 'Are you sure?' } %>
+              </div>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+  <div class="pagination justify-content-center">
+          <div class="pagination pagination-lg">
+            <%= will_paginate @products %> 
+          </div>
+        </div>
+</div>
+<br>
+
+<br>
+
+
